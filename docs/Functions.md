@@ -5,8 +5,6 @@
 - Uploading configs
 - Functions - retrieving client print settings
 - Functions - orders
-- Set default settings
-- Set lead time
 
 Add to docs:
 - getSupportedLanguages
