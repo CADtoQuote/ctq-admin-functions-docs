@@ -1,11 +1,11 @@
 # Data Structure
 
 ## Client data
-![client_data](./screens/client_data.png)
+![client_data](./images/client_data.png)
 
 ## Managed data
 ### Settings
-![managed_data_settings](./screens/managed_data_settings.png)
+![managed_data_settings](./images/managed_data_settings.png)
 
 ### General info
-![managed_data_general_info](./screens/managed_data_general_info.png)
+![managed_data_general_info](./images/managed_data_general_info.png)

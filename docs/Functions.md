@@ -15,19 +15,10 @@ Add to docs:
 - getCurrencyByCode
 - getLanguageByCode
 - getCountryByCode
-- 
 
 ## Notes
-Za dodavanje procesa cu pogledati da li je bolje imati ovako vise poziva ili jednu transakciju. 
-<br/>
-S obzirom da materijali (vjerovatno i postproductions) zavise od odabranog procesa, mislim da je najlakse dodati field `type` i u managed i u client data (u material i process docs). Svi materijali da budu u istoj top level kolekciji nezavisno od procesa.
-<br/>
-Kada klijent npr zeli dodati novi materijal u neki svoj proces, bit ce query po tom fieldu. Trenutno je ovdje po processId.
-<br/>
-Kod kreiranja nove organizacije ce dodavanje default_language, supported_languages i currency biti odvojeni pozivi funkcija zbog lakse validacije.
 
-
-## Screen 1 - Create organization
+## Create organization
 ### Get currencies (managed data)
 ```
 getCurrencies()
@@ -111,7 +102,6 @@ createOrganization(data)
   }
 }
 ```
-
 #### Response
 ```json
 {
@@ -284,7 +274,6 @@ getSupportedCountries(organizationId)
   }
 }
 ```
-
 ### Add supported country for shipping
 ```
 addSupportedCountry(organizationId, data)
@@ -303,12 +292,9 @@ addSupportedCountry(organizationId, data)
      }
     }
 ```
-
 ### Remove supported country for shipping
-
 ```
 removeSupportedCountry(organizationId, code)
-
 ```
 #### code
 Represents country code
@@ -317,7 +303,6 @@ Represents country code
   "type": "string",
 }
 ```
-
 ### Add shipping option
 ```
 addShippingOption(organizationId, data)
@@ -372,12 +357,9 @@ addShippingOption(organizationId, data)
             }
 }
 ```
-
 ### Get shipping options
-
 ```
 getShippingOptions(organizationId)
-
 ```
 #### Response
 ```json json_schema
@@ -435,12 +417,9 @@ getShippingOptions(organizationId)
       }
 }
 ```
-
 ### Set min order value
-
 ```
 setMinOrderValue(organizationId, value)
-
 ```
 #### value
 ```json json_schema
@@ -448,12 +427,9 @@ setMinOrderValue(organizationId, value)
   "type": "number",
 }
 ```
-
 ### Set home vat value
-
 ```
 setVat(organizationId, value)
-
 ```
 #### value
 ```json json_schema
@@ -461,12 +437,9 @@ setVat(organizationId, value)
   "type": "number",
 }
 ```
-
 ### Set visual settings
-
 ```
 setVisualSettings(organizationId, data)
-
 ```
 #### data
 ```json json_schema
@@ -482,7 +455,6 @@ setVisualSettings(organizationId, data)
       }
     }
 ```
-
 ### Add supported language
 ```
 addSupportedLanguage(organizationId, code)
@@ -493,12 +465,9 @@ addSupportedLanguage(organizationId, code)
   "type": "string"
 }
 ```
-
 ### Remove supported language
-
 ```
 removeSupportedLanguages(organizationId, code)
-
 ```
 #### code
 Value represents language code.
@@ -507,9 +476,7 @@ Value represents language code.
     "type": "string"
 }
 ```
-
 ### Set default language
-
 ```
 setDefaultLanguage(organizationId, code)
 ```
@@ -568,14 +535,11 @@ getProcesses()
   }
 }
 ```
-
 ### Add process
-
 ```
 addProcess(organizationId, data)
 ```
 Flow: prvo da ide screen sa podesavanjem ovih vrijednosti, nakon cega se kreira proces u bazi. Nakon toga se dodaju qualities, materials, colors i postproductions. 
-
 #### data
 ```json json_schema
 {
@@ -622,7 +586,6 @@ Flow: prvo da ide screen sa podesavanjem ovih vrijednosti, nakon cega se kreira 
   }
 }
 ```
-
 ### Get materials (managed data)
 ```
 getMaterials()
@@ -670,9 +633,7 @@ getMaterials()
   }
 }
 ```
-
 ### Get colors (managed data)
-
 ```
 getColors()
 ```
@@ -710,9 +671,7 @@ getColors()
   }
 }
 ```
-
 ### Add material
-
 ```
 addMaterial(organizationId, processId, data)
 ```
@@ -833,7 +792,6 @@ addColor(organizationId, processId, materialId, data)
   }
 }
 ```
-
 ### Add quality
 ```
 addQuality(organizationId, processId, data)
@@ -872,7 +830,6 @@ addQuality(organizationId, processId, data)
   }
 }
 ```
-
 ### Get postproductions (managed data)
 ```
 getPostproductions()
@@ -920,7 +877,6 @@ getPostproductions()
   }
 }
 ```
-
 ### Add postproduction
 ```
 addPostproduction(organizationId, processId, data)
