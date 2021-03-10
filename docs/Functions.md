@@ -1,20 +1,14 @@
 # Functions
 ## To do
 - Update functions
-- Uploading pictures
+- Error handling for uploading pictures
 - Uploading configs
 - Functions - retrieving client print settings
 - Functions - orders
 
-Add to docs:
-- getSupportedLanguages
-- getVisualSettings
-- updateGeneralInfo
-- getCurrencyByCode
-- getLanguageByCode
-- getCountryByCode
-
-## Notes
+### Notes
+Implement transactions for supported languages and translations. If new language is added, translations for every setting has to be added.
+If new settings are being added at the same time, supported_languages are being read to get all required translations. That function has to be transaction as well.
 
 ## Create organization
 ### Get currencies (managed data)
@@ -26,10 +20,22 @@ Each element has following format with three letter code as object name.
 ```json
 {
   "EUR": {
-    "name": "",
-    "symbol": "",
-    "code": ""
+    "name": "string",
+    "symbol": "string",
+    "code": "string"
   }
+}
+```
+### Get currency by code (managed data)
+```
+getCurrencyByCode(code)
+```
+#### Response
+```json
+{
+    "name": "string",
+    "symbol": "string",
+    "code": "string"  
 }
 ```
 ### Get languages (managed data)
@@ -45,6 +51,17 @@ getLanguages()
   }
 }
 ```
+### Get language by code (managed data)
+```
+getLanguageByCode(code)
+```
+#### Response
+```json
+{
+    "name": "Portuguese", 
+    "native_name": "português" 
+}
+```
 ### Get countries (managed data)
 ```
 getCountries()
@@ -57,6 +74,23 @@ Country name is in English
   "BR": "Brazil",
   "GR": "Greece","
   ...
+}
+```
+### Get country by code (managed data)
+```
+getCountryByCode(code)
+```
+#### Response
+Country name in every language that exists in managed data.
+```json
+{
+  "de":"Bosnien und Herzegowina",
+  "pt":"Bósnia e Herzegovina",
+  "en":"Bosnia & Herzegovina",
+  "it":"Bosnia ed Erzegovina",
+  "sv":"Bosnien och Hercegovina",
+  "es":"Bosnia y Herzegovina",
+  "bs":"Bosna i Hercegovina"
 }
 ```
 ### Create new organization
@@ -228,6 +262,64 @@ getGeneralInfo(organizationId)
       }
     }
   }
+}
+```
+### Update organization's general info
+```
+updateGeneralInfo(organizationId, data)
+```
+#### data
+```json json_schema
+{
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string"
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "street_address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "mail": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "postal_code": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+```
+### Set default currency
+```
+setDefaultCurrency(organizationId, code)
+```
+#### code
+```json json_schema
+{
+  "type": "string",
+}
+### Get visual settings
+```
+getVisualSettings(organizationId)
+```
+#### Response
+```json
+{
+  "corner_roundness": "number",
+  "button_color": "string"
 }
 ```
 ### Get supported countries for shipping
@@ -461,6 +553,23 @@ addSupportedLanguage(organizationId, code)
 ```json json_schema
 {
   "type": "string"
+}
+```
+### Get supported languages
+```
+getSupportedLanguages(organizationId)
+```
+#### Response
+```json
+{
+  "en": {
+    "name": "English",
+    "native_name": "English"
+  },
+  "de": {
+    "name": "German",
+    "native_name": "Deutsch"
+  }
 }
 ```
 ### Remove supported language
