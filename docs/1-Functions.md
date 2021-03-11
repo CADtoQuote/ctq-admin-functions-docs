@@ -103,6 +103,10 @@ createOrganization(data)
     "company_name": {
       "type": "string"
     },
+    "logo": {
+      "type": "string",
+      "description": "Picture URL"
+    },
     "contact": {
       "type": "object",
       "properties": {
@@ -273,6 +277,10 @@ updateGeneralInfo(organizationId, data)
   "properties": {
     "company_name": {
       "type": "string"
+    },
+    "logo": {
+      "type": "string",
+      "description": "Picture URL"
     },
     "contact": {
       "type": "object",
