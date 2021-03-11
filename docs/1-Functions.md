@@ -311,6 +311,7 @@ setDefaultCurrency(organizationId, code)
 {
   "type": "string",
 }
+```
 ### Get visual settings
 ```
 getVisualSettings(organizationId)
@@ -378,6 +379,9 @@ addSupportedCountry(organizationId, data)
        },
        "shipping_zone": {
          "type": "string"
+       },
+       "vat": {
+         "type": "number"
        }
      }
     }
