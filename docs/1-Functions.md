@@ -563,6 +563,16 @@ setVisualSettings(organizationId, data)
       }
     }
 ```
+### Set lead time
+```
+setLeadTime(organizationId, value)
+```
+#### value
+```json json_schema
+{
+  "type": "number",
+}
+```
 ### Add supported language
 ```
 addSupportedLanguage(organizationId, code)
