@@ -1,8 +1,6 @@
 # Functions
 ## To do
 - Update functions
-- Error handling for uploading pictures
-- Uploading configs
 - Functions - retrieving client print settings
 - Functions - orders
 
@@ -30,7 +28,7 @@ Each element has following format with three letter code as object name.
 ```
 getCurrencyByCode(code)
 ```
-#### Response
+#### Response example
 ```json
 {
     "name": "string",
@@ -55,7 +53,7 @@ getLanguages()
 ```
 getLanguageByCode(code)
 ```
-#### Response
+#### Response example
 ```json
 {
     "name": "Portuguese", 
@@ -67,7 +65,7 @@ getLanguageByCode(code)
 getCountries()
 ```
 #### Response example
-Country name is in English
+Country names are in English
 ```json
 {
   "SB": "Solomon Islands",
@@ -80,7 +78,7 @@ Country name is in English
 ```
 getCountryByCode(code)
 ```
-#### Response
+#### Response example
 Country name in every language that exists in managed data.
 ```json
 {
@@ -310,6 +308,7 @@ setDefaultCurrency(organizationId, code)
 ```json json_schema
 {
   "type": "string",
+  "description": "Currency code"
 }
 ```
 ### Get visual settings
@@ -317,11 +316,18 @@ setDefaultCurrency(organizationId, code)
 getVisualSettings(organizationId)
 ```
 #### Response
-```json
+```json json_schema
 {
-  "corner_roundness": "number",
-  "button_color": "string"
-}
+      "type": "object",
+      "properties": {
+        "button_color": {
+          "type": "string",
+        },
+        "corner_roundness": {
+          "type": "string",
+        }
+      }
+    }
 ```
 ### Get supported countries for shipping
 ```
@@ -391,10 +397,10 @@ addSupportedCountry(organizationId, data)
 removeSupportedCountry(organizationId, code)
 ```
 #### code
-Represents country code
 ```json json_schema
 {
   "type": "string",
+  "description": "Country code"
 }
 ```
 ### Add shipping option
@@ -556,14 +562,15 @@ addSupportedLanguage(organizationId, code)
 #### code
 ```json json_schema
 {
-  "type": "string"
+  "type": "string",
+  "description": "Language code"
 }
 ```
 ### Get supported languages
 ```
 getSupportedLanguages(organizationId)
 ```
-#### Response
+#### Response example
 ```json
 {
   "en": {
@@ -581,10 +588,10 @@ getSupportedLanguages(organizationId)
 removeSupportedLanguages(organizationId, code)
 ```
 #### code
-Value represents language code.
 ```json json_schema
 {
-    "type": "string"
+    "type": "string",
+    "description": "Language code"
 }
 ```
 ### Set default language
@@ -592,13 +599,25 @@ Value represents language code.
 setDefaultLanguage(organizationId, code)
 ```
 #### code
-Represents language code
 ```json json_schema
 {
-  "type": "string"
+  "type": "string",
+  "description": "Language code"
 }
 ```
 ## Print settings
+### Upload picture
+```
+uploadPicture(organizationId, file)
+```
+#### Response
+```json json_schema
+{
+  "type": "string",
+  "description": "Picture URL"
+}
+```
+
 ### Get processes (managed data)
 ```
 getProcesses()
@@ -649,8 +668,7 @@ getProcesses()
 ### Add process
 ```
 addProcess(organizationId, data)
-```
-Flow: prvo da ide screen sa podesavanjem ovih vrijednosti, nakon cega se kreira proces u bazi. Nakon toga se dodaju qualities, materials, colors i postproductions. 
+``` 
 #### data
 ```json json_schema
 {
@@ -786,7 +804,6 @@ getColors()
 ```
 addMaterial(organizationId, processId, data)
 ```
-Ovdje se sve salje sa frontenda, jer klijent moze kreirati svoj materijal i svakako ce se slati podaci kao sto su name, description itd. Dakle ako odabere materijal iz managed data, kopirace se i slati u funkciju. Ako kreira svoj, podaci ce se uzeti iz forme i slati u funkciju.
 #### data
 ```json json_schema
 {
@@ -901,6 +918,18 @@ addColor(organizationId, processId, materialId, data)
         }
         }
   }
+}
+```
+### Upload config 
+```
+uploadConfig(organizationId, file)
+```
+#### Response
+```json json_schema
+{
+  "type": "string",
+  "description": "Storage location",
+  "example": "gs://example.appspot.com/path/config.ini"
 }
 ```
 ### Add quality
