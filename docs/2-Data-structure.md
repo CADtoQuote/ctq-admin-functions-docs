@@ -1,7 +1,7 @@
 # Data Structure
 
 ## Client data
-![client_data](./images/client_data.png)
+![client_data](./images/client_data_v2.png)
 
 ## Managed data
 ### Settings
